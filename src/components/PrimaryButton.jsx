@@ -10,16 +10,18 @@ const useStyles = makeStyles((theme) => ({
 const PrimaryButton = ({ children, ...props }) => {
   const styles = useStyles();
   return (
-    <Button
-      className={styles.root}
-      type="submit"
-      size="large"
-      variant="contained"
-      color="primary"
-      {...props}
-    >
-      {children}
-    </Button>
+    <p>
+      <Button
+        className={styles.root}
+        type="submit"
+        size="large"
+        variant="contained"
+        color="primary"
+        {...props}
+      >
+        {children}
+      </Button>
+    </p>
   );
 };
 
