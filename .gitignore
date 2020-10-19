@@ -1,12 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Api Stuff
+.env
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# Api Stuff
-.env
 
 # testing
 /coverage
