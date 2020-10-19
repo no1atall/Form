@@ -31,9 +31,8 @@ const FormContainer = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
-    console.log(e);
+  const onSubmit = (e) => {
+    
 
     emailjs.sendForm("gmail", "template_46k6smn", e.target, KEY).then(
       (result) => {
