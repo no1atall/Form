@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import emailjs from "emailjs-com";
+import Swal from "sweetalert2";
 
 import MainBox from "./MainBox";
 import Form from "./Form";
 import Input from "./Input";
 import PrimaryButton from "./PrimaryButton";
-// import StyledButton from "./StyledButton";
 
 const schema = yup.object().shape({
   name: yup
@@ -33,15 +33,28 @@ const FormContainer = () => {
   });
 
   const onSubmit = (data, e) => {
-    
     emailjs.sendForm("gmail", "template_46k6smn", e.target, KEY).then(
       (result) => {
+        Swal.fire({
+          icon: "success",
+          title: "Your Email has been sent.",
+          text: "I will get back to you shortly.",
+          showCloseButton: true,
+        });
+
         console.log(result.text);
         console.log(
           "Your Email has been sent. I will get back to you shortly."
         );
       },
       (error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Your Email failed to send.",
+          text: "Please Check your infomation and try again.",
+          showCloseButton: true,
+        });
+
         console.log(error.text);
         console.log(
           "Your Email failed to send. Please Check your infomation and try again."
@@ -90,8 +103,6 @@ const FormContainer = () => {
           helperText={errors?.msg?.message}
         />
 
-        {/* This is a styled button with material UI. Due to a bug with Netilfy, this button does not work as inteneded upon submit. Netlify requires an <input> field instead of a <button> field. As a work around, I made a <StyledButton> with styled components that does work as inteneded.  */}
-
         <PrimaryButton
           type="submit"
           size="large"
@@ -100,8 +111,6 @@ const FormContainer = () => {
         >
           Submit
         </PrimaryButton>
-
-        {/* <StyledButton /> */}
       </Form>
     </MainBox>
   );
