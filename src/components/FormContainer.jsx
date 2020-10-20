@@ -8,8 +8,8 @@ import emailjs from "emailjs-com";
 import MainBox from "./MainBox";
 import Form from "./Form";
 import Input from "./Input";
-// import PrimaryButton from "./PrimaryButton";
-import StyledButton from "./StyledButton";
+import PrimaryButton from "./PrimaryButton";
+// import StyledButton from "./StyledButton";
 
 const schema = yup.object().shape({
   name: yup
@@ -32,7 +32,8 @@ const FormContainer = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = (data, e) => {
+    
     emailjs.sendForm("gmail", "template_46k6smn", e.target, KEY).then(
       (result) => {
         console.log(result.text);
@@ -91,16 +92,16 @@ const FormContainer = () => {
 
         {/* This is a styled button with material UI. Due to a bug with Netilfy, this button does not work as inteneded upon submit. Netlify requires an <input> field instead of a <button> field. As a work around, I made a <StyledButton> with styled components that does work as inteneded.  */}
 
-        {/* <PrimaryButton
+        <PrimaryButton
           type="submit"
           size="large"
           variant="contained"
           color="primary"
         >
           Submit
-        </PrimaryButton> */}
+        </PrimaryButton>
 
-        <StyledButton />
+        {/* <StyledButton /> */}
       </Form>
     </MainBox>
   );
